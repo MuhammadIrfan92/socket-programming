@@ -20,4 +20,4 @@ def send(msg):
 
 send("Hello World")
 
-message=-00
+message=477
