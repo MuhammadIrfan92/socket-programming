@@ -30,18 +30,20 @@ def handle_client(conn, addr):
         # receive data from client
         # converting msg from bytes format to a string
         msg_length = conn.recv(HEADER).decode(FORMAT)  # receive number of bytes to receive from the client
-        msg_length = int(msg)
-        msg = conn.recv(msg_length).decode(FORMAT)
-        if msg == DISCONNECT_MESSAGE:
-            connected = False
-        print(f"[{addr}] Says: {msg}")
+        if msg_length:
+            msg_length = int(msg_length)
+            msg = conn.recv(msg_length).decode(FORMAT)
+            if msg == DISCONNECT_MESSAGE:
+                connected = False
+            print(f"[{addr}] Says: {msg}")
 
     conn.close()
-    
+
 
 def start():
     # start listening for new connections
     server.listen()
+    print(f"[LISTENING] Server is listening on {SERVER}")
     # Continue to listen for infinite time
     while True:
         # wait for the connection to occur
