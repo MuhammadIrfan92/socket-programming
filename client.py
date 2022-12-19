@@ -10,6 +10,7 @@ ADDR = (SERVER, PORT)
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDR)
 
+
 def send(msg):
     message = msg.encode(FORMAT) # encodes the message(string) to byte like object
     msg_length = len(message)
@@ -17,7 +18,11 @@ def send(msg):
     send_length += b' ' * (HEADER-len(send_length)) # byte representation of space
     client.send(send_length)
     client.send(message)
+    print(client.recv(2048))
+
 
 send("Hello World")
-
-message=47722
+send("Hello lol")
+send("Hello bol")
+send("Hello tol")
+send(DISCONNECT_MESSAGE)
