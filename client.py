@@ -14,4 +14,9 @@ def send(msg):
     message = msg.encode(FORMAT) # encodes the message(string) to byte like object
     msg_length = len(message)
     send_length = str(msg_length).encode(FORMAT)
+    send_length += b' ' * (HEADER-len(send_length)) # byte representation of space
+    client.send(send_length)
+    client.send(message)
+
+send("Hello World")
 
